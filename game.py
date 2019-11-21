@@ -61,8 +61,8 @@ ball.speed(0)
 ball.color("green")
 ball.shape("circle")
 ball.goto(0, 0)
-ball.dx = 0.3
-ball.dy = -0.3
+ball.dx = 1
+ball.dy = 1
 # Main loop
 while True:
     wn.update()
@@ -83,4 +83,11 @@ while True:
         ball.dx *= -1
     if ball.xcor() < -390:
         ball.goto(0,0)
+        ball.dx *= -1
+    # paddle and ball collisions
+    if (340 < ball.xcor() < 350) and (paddle_b.ycor() + 40 > ball.ycor() > paddle_b.ycor() - 40):
+        ball.setx(340)
+        ball.dx *= -1
+    if (-350 < ball.xcor() < -340) and (paddle_a.ycor() + 40 > ball.ycor() > paddle_a.ycor() - 40):
+        ball.setx(-340)
         ball.dx *= -1
